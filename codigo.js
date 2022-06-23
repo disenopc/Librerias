@@ -143,8 +143,8 @@ function agregarAlCarrito(productoNuevo) {
     }
     console.log(...carritoDeCompras);
     Swal.fire({
-        title: "Producto: " + productoNuevo.nombre,
-        text: " agregado al carrito.",
+        title: productoNuevo.nombre,
+        text: "se agregó al carrito.",
         imageUrl: productoNuevo.img,
         imageWidth: 170,
         imageHeight: 159,
@@ -154,6 +154,7 @@ function agregarAlCarrito(productoNuevo) {
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
     tablaDelCarrito()
+
 }
 
 function tablaDelCarrito(productoNuevo) {
@@ -184,20 +185,42 @@ function tablaDelCarrito(productoNuevo) {
 
     const borrarCarrito = document.createElement("div");
     cuerpoTabla.appendChild(borrarCarrito);
+
+
     borrarCarrito.innerHTML = `<button id="btnBorrarCarrito" class="btn btn-warning rounded-pill text-secondary">Borrar carrito</button>`
 
     const btnBorrarCarrito = document.getElementById("btnBorrarCarrito")
-    btnBorrarCarrito.addEventListener("click", borrar);
+
+    btnBorrarCarrito.addEventListener("click", () => {
+        Swal.fire({
+            title: 'Estás seguro que deseas eliminar el carrito?',
+            text: "No podrás recuperarlo!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#E8D637',
+            cancelButtonColor: 'black',
+            confirmButtonText: 'Si, eliminar carrito!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'El carrito ha sido eliminado!',
+
+                )
+                borrar();
+            }
+        })
+    });
+
 
     localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
-
-
 }
 const borrar = () => {
     carritoDeCompras = [];
     tablaDelCarrito();
 
+
 }
+
 
 const eliminar = (productoNuevo) => {
     const findCarrito = carritoDeCompras.find(e => e.id === productoNuevo.id);
@@ -209,11 +232,10 @@ const eliminar = (productoNuevo) => {
 tablaDelCarrito();
 
 
+
 //Desestructuracion de arrays
 //Alimento balanceado para adultos
 
 const [a, b, c, d, e, f, g] = productoA
 
 console.log(a, b, c, d, e, f, g);
-
-// BOTTOM DRAWER
