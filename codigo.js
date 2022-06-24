@@ -166,8 +166,8 @@ function tablaDelCarrito(productoNuevo) {
                     <td> ${ productoNuevo.id } </td>
                     <td> ${ productoNuevo.nombre } </td>
                     <td> ${ productoNuevo.cantidad } </td> 
-                    <td> ${ productoNuevo.precio * productoNuevo.cantidad } </td>
-                    <td><button id = "btnEliminar${productoNuevo.id}" class="btn btn-warning rounded-pill text-secondary"> Eliminar producto  </button></td>
+                    <td> $ ${ productoNuevo.precio * productoNuevo.cantidad } </td>
+                    <td><button id ="btnEliminar${productoNuevo.id}"class="btn btn-warning" >X</button></td>
                     </tr>
                 `;
         }),
@@ -180,7 +180,7 @@ function tablaDelCarrito(productoNuevo) {
     const sumaCarrito = document.createElement("div");
 
     const sumarProductos = carritoDeCompras.map(productoNuevo => productoNuevo.precio * productoNuevo.cantidad).reduce((prev, curr) => prev + curr, 0);
-    sumaCarrito.innerHTML = sumarProductos;
+    sumaCarrito.innerHTML = "$" + sumarProductos;
     cuerpoTabla.appendChild(sumaCarrito);
 
     const borrarCarrito = document.createElement("div");
@@ -202,10 +202,10 @@ function tablaDelCarrito(productoNuevo) {
             confirmButtonText: 'Si, eliminar carrito!'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'El carrito ha sido eliminado!',
-
-                )
+                Swal.fire({
+                    text: 'El carrito ha sido eliminado!',
+                    confirmButtonColor: '#E8D637'
+                });
                 borrar();
             }
         })
