@@ -80,8 +80,11 @@ const listasuscriptores = new Suscriptores();
 
 //Tecla enter
 function capturarP(e) {
-    ((e.which == 13) || (e.keycode == 13)) ? alert("Escriba un email y luego presione el boton enviar"): ""
-}
+    ((e.which == 13) || (e.keycode == 13)) ? Swal.fire({
+        text: 'Ingrese un email válido y luego presione enviar',
+        confirmButtonColor: '#E8D637'
+    }): ""
+};
 
 
 //Modo cuervo

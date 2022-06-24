@@ -41,15 +41,6 @@
             font-size: 15px;
             font-family: serif;
             color: black;
-            border-radius: #E8D637;
             width: 300px;
             position: bottom;
-        }
-        
-        .swal2-confirmed.swal2-styled {
-            color: #E8D637;
-        }
-        
-        .botonCarro {
-            color: #E8D637;
         }
